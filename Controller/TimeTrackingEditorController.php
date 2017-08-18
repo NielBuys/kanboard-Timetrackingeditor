@@ -99,7 +99,7 @@ class TimeTrackingEditorController extends BaseController
         $values['subtask_id'],
         $this->userSession->getId(),
         $values['comment'],
-        $values['is_billable'] ?: 0)) {
+        (isset($values['is_billable']) ? $values['is_billable'] : 0))) {
           // TODO: Best way to display the errors?
           $this->flash->failure("Another Timer is already running");
           return false;
@@ -131,7 +131,7 @@ class TimeTrackingEditorController extends BaseController
          $values['subtask_id'],
          $this->userSession->getId(),
          $values['comment'],
-         $values['is_billable'] ?: 0);
+         (isset($values['is_billable']) ? $values['is_billable'] : 0));
 
    $this->subtaskStatusModel->toggleStatus($values['subtask_id']);
 
